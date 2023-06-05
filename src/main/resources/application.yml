@@ -27,4 +27,7 @@ startup:
   producer:
     enabled: false
   consumer:
-    enabled: true
+    enabled: false
+  filter:
+    consumer:
+      enabled: true

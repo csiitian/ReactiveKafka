@@ -1,4 +1,4 @@
-package org.example.redis;
+package org.shekhawat.coder.redis;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;

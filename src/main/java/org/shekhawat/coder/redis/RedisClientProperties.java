@@ -1,4 +1,4 @@
-package org.example.redis;
+package org.shekhawat.coder.redis;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

@@ -1,4 +1,4 @@
-package org.example.dto;
+package org.shekhawat.coder.dto;
 
 public enum Result {
 

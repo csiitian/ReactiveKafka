@@ -1,4 +1,4 @@
-package org.example.redis;
+package org.shekhawat.coder.redis;
 
 import org.springframework.data.redis.core.ReactiveRedisOperations;
 import org.springframework.stereotype.Repository;

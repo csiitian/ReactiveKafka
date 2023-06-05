@@ -1,4 +1,4 @@
-package org.example.properties;
+package org.shekhawat.coder.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

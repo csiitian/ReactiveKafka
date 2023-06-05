@@ -1,8 +1,8 @@
-package org.example.startup;
+package org.shekhawat.coder.startup;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.kafka.KafkaConsumer;
+import org.shekhawat.coder.kafka.KafkaConsumer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
@@ -20,7 +20,7 @@ public class KafkaConsumerStartUp implements ApplicationListener<ApplicationRead
     private final KafkaConsumer kafkaConsumer;
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
-        log.info("Consumer Started.");
-        kafkaConsumer.startConsumer();
+        log.info(">> Application Event: >> Consumer Started.");
+        kafkaConsumer.start();
     }
 }

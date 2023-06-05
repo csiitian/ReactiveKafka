@@ -1,9 +1,9 @@
-package org.example.config;
+package org.shekhawat.coder.config;
 
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.example.properties.KafkaConsumerProperties;
-import org.example.properties.KafkaTopicProperties;
+import org.shekhawat.coder.properties.KafkaConsumerProperties;
+import org.shekhawat.coder.properties.KafkaTopicProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.kafka.receiver.KafkaReceiver;
