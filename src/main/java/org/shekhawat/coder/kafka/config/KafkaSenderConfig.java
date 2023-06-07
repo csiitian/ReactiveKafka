@@ -1,7 +1,7 @@
-package org.shekhawat.coder.config;
+package org.shekhawat.coder.kafka.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.shekhawat.coder.properties.KafkaProducerProperties;
+import org.shekhawat.coder.kafka.properties.KafkaProducerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.kafka.sender.KafkaSender;

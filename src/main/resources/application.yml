@@ -30,4 +30,4 @@ startup:
     enabled: false
   filter:
     consumer:
-      enabled: true
+      enabled: false

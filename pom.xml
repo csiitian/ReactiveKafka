@@ -12,7 +12,8 @@
 
     <groupId>org.shekhawat.coder</groupId>
     <artifactId>reactive-kafka-tool</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
+    <description>Reactive Kafka Customization</description>
     <packaging>jar</packaging>
 
     <properties>

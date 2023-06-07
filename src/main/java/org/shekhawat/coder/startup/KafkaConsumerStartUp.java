@@ -4,22 +4,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.shekhawat.coder.kafka.KafkaConsumer;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.ApplicationListener;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-
 @Slf4j
-@Component
-@Order(0)
 @RequiredArgsConstructor
+@Component
 @ConditionalOnProperty(prefix = "startup.consumer", value = "enabled", havingValue = "true")
-public class KafkaConsumerStartUp implements ApplicationListener<ApplicationReadyEvent> {
+public class KafkaConsumerStartUp extends AbstractStartUpApplication {
 
     private final KafkaConsumer kafkaConsumer;
+
     @Override
-    public void onApplicationEvent(ApplicationReadyEvent event) {
+    public void startUp() {
         log.info(">> Application Event: >> Consumer Started.");
         kafkaConsumer.start();
     }

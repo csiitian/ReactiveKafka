@@ -1,7 +1,7 @@
 package org.shekhawat.coder.kafka;
 
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.shekhawat.coder.properties.KafkaTopicProperties;
+import org.shekhawat.coder.kafka.properties.KafkaTopicProperties;
 import reactor.core.publisher.Mono;
 import reactor.kafka.sender.KafkaSender;
 import reactor.kafka.sender.SenderRecord;

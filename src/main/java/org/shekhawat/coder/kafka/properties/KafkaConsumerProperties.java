@@ -1,4 +1,4 @@
-package org.shekhawat.coder.properties;
+package org.shekhawat.coder.kafka.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
