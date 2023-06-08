@@ -2,6 +2,7 @@ package org.shekhawat.coder.kafka.config;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.shekhawat.coder.kafka.properties.KafkaProducerProperties;
+import org.shekhawat.coder.kafka.properties.KafkaProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import reactor.kafka.sender.KafkaSender;
@@ -14,9 +15,10 @@ import java.util.Map;
 public class KafkaSenderConfig {
 
     @Bean("kafkaSender")
-    public <K, V> KafkaSender<K, V> kafkaSender(KafkaProducerProperties kafkaProducerProperties) {
+    public <K, V> KafkaSender<K, V> kafkaSender(KafkaProperties kafkaProperties,
+                                                KafkaProducerProperties kafkaProducerProperties) {
         Map<String, Object> producerPros = new HashMap<>();
-        producerPros.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProducerProperties.getBootstrapServers());
+        producerPros.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
         producerPros.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, kafkaProducerProperties.getKeySerializer());
         producerPros.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, kafkaProducerProperties.getValueSerializer());
         producerPros.put(ProducerConfig.LINGER_MS_CONFIG, kafkaProducerProperties.getLingeringMs());

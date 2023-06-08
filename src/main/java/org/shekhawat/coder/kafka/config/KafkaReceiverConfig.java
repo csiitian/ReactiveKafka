@@ -3,6 +3,7 @@ package org.shekhawat.coder.kafka.config;
 import lombok.RequiredArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.shekhawat.coder.kafka.properties.KafkaConsumerProperties;
+import org.shekhawat.coder.kafka.properties.KafkaProperties;
 import org.shekhawat.coder.kafka.properties.KafkaTopicProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,20 +19,20 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class KafkaReceiverConfig {
 
-    private final KafkaTopicProperties kafkaTopicProperties;
-    private final KafkaConsumerProperties kafkaConsumerProperties;
-
     @Bean("kafkaReceiver")
-    public KafkaReceiver<String, String> kafkaReceiver() {
+    public <K, V> KafkaReceiver<K, V> kafkaReceiver(KafkaTopicProperties kafkaTopicProperties,
+                                                    KafkaProperties kafkaProperties,
+                                                    KafkaConsumerProperties kafkaConsumerProperties) {
+
         Map<String, Object> consumerProps = new HashMap<>();
-        consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaConsumerProperties.getBootstrapServers());
+        consumerProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaProperties.getBootstrapServers());
         consumerProps.put(ConsumerConfig.GROUP_ID_CONFIG, kafkaConsumerProperties.getGroupId());
         consumerProps.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, kafkaConsumerProperties.getKeyDeserializer());
         consumerProps.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, kafkaConsumerProperties.getValueDeserializer());
         consumerProps.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, kafkaConsumerProperties.getAutoOffsetReset());
 
-        ReceiverOptions<String, String> receiverOptions = ReceiverOptions
-                .<String, String>create(consumerProps)
+        ReceiverOptions<K, V> receiverOptions = ReceiverOptions
+                .<K, V>create(consumerProps)
                 .addAssignListener(receiverPartitions -> receiverPartitions.forEach(ReceiverPartition::seekToBeginning))
                 .subscription(Collections.singletonList(kafkaTopicProperties.getName()));
 

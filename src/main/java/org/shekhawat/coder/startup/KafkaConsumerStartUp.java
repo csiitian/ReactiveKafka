@@ -17,6 +17,11 @@ public class KafkaConsumerStartUp extends AbstractStartUpApplication {
     @Override
     public void startUp() {
         log.info(">> Application Event: >> Consumer Started.");
+        // 1686161426272
+        // 1685881099457
+        // 1685881097641
+        // kafkaConsumer.seekToTimestamp(1686161426272L);
         kafkaConsumer.start();
+        // kafkaConsumer.seekToBeginning();
     }
 }

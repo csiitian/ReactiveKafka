@@ -1,17 +1,21 @@
 spring:
   kafka:
+    bootstrap-servers: http://localhost:29092
+    schema-registry-url: http://localhost:8082
     topic:
       name: 'org.example.reactive.kafka2'
       num-partitions: 4
       replication-factors: 2
+    second-topic:
+      name: 'org.example.reactive.kafka'
+      num-partitions: 4
+      replication-factors: 2
     consumer:
-      bootstrap-servers: http://localhost:29092
       group-id: test-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     producer:
-      bootstrap-servers: http://localhost:29092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       lingering-ms: 500
@@ -30,4 +34,4 @@ startup:
     enabled: false
   filter:
     consumer:
-      enabled: false
+      enabled: true

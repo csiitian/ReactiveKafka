@@ -6,11 +6,9 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties("spring.kafka.consumer")
-public class KafkaConsumerProperties {
+@ConfigurationProperties("spring.kafka")
+public class KafkaProperties {
 
-    private String groupId;
-    private String autoOffsetReset;
-    private String keyDeserializer;
-    private String valueDeserializer;
+    private String bootstrapServers;
+    private String schemaRegistryUrl;
 }

@@ -1,5 +1,7 @@
 package org.shekhawat.coder.kafka;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.consumer.OffsetAndTimestamp;
 import org.apache.kafka.common.TopicPartition;
 import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
@@ -11,8 +13,9 @@ import reactor.kafka.receiver.ReceiverRecord;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.Set;
 
+@Slf4j
 public abstract class AbstractConsumer<K, V> {
 
     protected final KafkaReceiver<K, V> kafkaReceiver;
@@ -74,6 +77,19 @@ public abstract class AbstractConsumer<K, V> {
     public void seekToBeginning() {
         kafkaReceiver.doOnConsumer(kvConsumer -> {
             kvConsumer.seekToBeginning(kvConsumer.assignment());
+            return Mono.empty();
+        }).subscribe();
+    }
+
+    public void seekToTimestamp(long timestamp) {
+        kafkaReceiver.doOnConsumer(kvConsumer -> {
+            Set<TopicPartition> assignment = kvConsumer.assignment();
+            Map<TopicPartition, Long> time = new HashMap<>();
+            assignment.forEach(topicPartition -> time.put(topicPartition, timestamp));
+            Map<TopicPartition, OffsetAndTimestamp> offset = kvConsumer.offsetsForTimes(time);
+            offset.forEach(((topicPartition, offsetAndTimestamp) -> {
+                kvConsumer.seek(topicPartition, offsetAndTimestamp.offset());
+            }));
             return Mono.empty();
         }).subscribe();
     }
